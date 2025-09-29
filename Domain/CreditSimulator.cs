@@ -30,7 +30,7 @@ public class CreditSimulator
         return Math.Round(numerator/denominator,2);
     }
 
-    public Installment ComputeInstallment(int number, decimal remainingAmount)
+    public Installment ComputeInstallment(int number, decimal remainingAmount, DateTime fromDate)
     {
         decimal total = MonthlyAmount;
         decimal interest = (decimal)Math.Round( CreditSimulator.ComputePeriodicRate(AnnualRate) * remainingAmount, 2);
@@ -41,30 +41,37 @@ public class CreditSimulator
             Number = number, 
             Total = total,
             Interest= interest, 
-            Principal= principal
+            Principal= principal,
+            DateInvest = fromDate.AddMonths(number-1)
         };
     }
 
-    public IReadOnlyCollection<Installment> ComputeSchedule()
+    public IReadOnlyCollection<Installment> ComputeSchedule(DateTime fromDate)
     {
         var installments = new List<Installment>();
-        decimal remainingAmount = Principal; 
+        decimal remainingAmount = Principal;
         for (int i = 1; i < DurationInMonths; i++)
         {
-            Installment currentInstallment = ComputeInstallment(1, remainingAmount);
+            Installment currentInstallment = ComputeInstallment(i, remainingAmount, fromDate);
             remainingAmount -= currentInstallment.Principal;
             installments.Add(currentInstallment);
         }
         remainingAmount = Principal - installments.Sum(i => i.Principal);
         // Last installment adjustment to avoid rounding issues
-        installments.Add(new Installment()
+        installments.Add(ComputeLastInstallment(fromDate, remainingAmount));
+
+        return installments;
+    }
+
+    private Installment ComputeLastInstallment(DateTime fromDate, decimal remainingAmount)
+    {
+        return new Installment()
         {
             Number = DurationInMonths,
             Principal = remainingAmount,
             Interest = (decimal)Math.Round(CreditSimulator.ComputePeriodicRate(AnnualRate) * remainingAmount, 2),
-            Total = remainingAmount + (decimal)Math.Round( CreditSimulator.ComputePeriodicRate(AnnualRate) * remainingAmount, 2)
-        });
-
-        return installments;
+            Total = remainingAmount + (decimal)Math.Round(CreditSimulator.ComputePeriodicRate(AnnualRate) * remainingAmount, 2),
+            DateInvest = fromDate.AddMonths(DurationInMonths)
+        };
     }
 }

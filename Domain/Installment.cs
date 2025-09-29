@@ -4,4 +4,5 @@
     public decimal Interest { get; init; }
     public decimal Principal { get; init; }
     public int Number { get; init; }
+    public DateTime DateInvest { get; set; }
 }
