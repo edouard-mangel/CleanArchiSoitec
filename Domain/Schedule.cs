@@ -77,7 +77,7 @@ public class Schedule
             Principal = remainingAmount,
             Interest = (decimal)Math.Round(Schedule.ComputePeriodicRate(AnnualRate) * remainingAmount, 2),
             Total = remainingAmount + (decimal)Math.Round(Schedule.ComputePeriodicRate(AnnualRate) * remainingAmount, 2),
-            DateInvest = UnlockDate.AddMonths(DurationInMonths)
+            DateInvest = UnlockDate.AddMonths(DurationInMonths-1)
         };
     }
 }

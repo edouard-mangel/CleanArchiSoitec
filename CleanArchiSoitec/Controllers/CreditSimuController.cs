@@ -1,3 +1,4 @@
+using CleanArchiSoitec.Infrastructure;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,14 +16,20 @@ namespace CleanArchiSoitec.Controllers
         }
 
         [HttpGet(Name = "Schedule")]
-        public object Get(CreditSimuRequest request)
+        public CreditSimuResponse Get([FromQuery] CreditSimuRequest request)
         {
-            Schedule schedule = new Schedule(request.Principal,request.AnnualRate,request.DurationInMonths, request.UnlockDate);
+            Schedule schedule = new Schedule(request.Principal,request.AnnualRate,request.DurationInMonths, DateTime.Parse(request.UnlockDate));
+            var response = new CreditSimuResponse(schedule);
+            new ScheduleCSVWriter(schedule).ExportSchedule();
+            return response;
+        }
+        /*
+        public CreditSimuResponse Post([FromQuery] CreditSimuRequest request)
+        {
+            Schedule schedule = new Schedule(request.Principal, request.AnnualRate, request.DurationInMonths, DateTime.Parse(request.UnlockDate));
             var response = new CreditSimuResponse(schedule);
 
             return response;
-        }
-
-        
+        }*/
     }
 }

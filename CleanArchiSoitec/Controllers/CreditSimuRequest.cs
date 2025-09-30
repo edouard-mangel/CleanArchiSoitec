@@ -2,10 +2,9 @@
 {
     public class CreditSimuRequest
     {
-        public decimal Principal { get; }
-        public decimal AnnualRate { get; }
-        public decimal MonthlyAmount { get; }
-        public int DurationInMonths { get; }
-        public DateTime UnlockDate { get; }
+        public decimal Principal { get; set; }
+        public decimal AnnualRate { get; set; }
+        public int DurationInMonths { get; set; }
+        public string UnlockDate { get; set; }
     }
 }

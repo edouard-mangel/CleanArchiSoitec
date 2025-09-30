@@ -1,4 +1,6 @@
-﻿namespace UnitTests;
+﻿using Domain;
+
+namespace UnitTests;
 
 public class ScheduleTest
 {
@@ -89,8 +91,8 @@ public class ScheduleTest
         Assert.Equal(fromDate, firstInstallment.DateInvest);
     }
     [Theory]
-    [InlineData(10000, 5, 12, "2025-12-13", "2026-12-13")]
-    [InlineData(20000, 3.5, 24, "2025-01-14", "2027-01-14")]
+    [InlineData(10000, 5, 12, "2025-12-13", "2026-11-13")]
+    [InlineData(20000, 3.5, 24, "2025-01-14", "2026-12-14")]
     public void MustEndInvestmentDateAre(decimal principal, decimal annualRate, int durationInMonths, string dateBegin, string expectedValue)
     {
         // Arrange 
