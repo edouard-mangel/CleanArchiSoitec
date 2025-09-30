@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\Unit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchiSoitec.Infrastructure", "CleanArchiSoitec.Infrastructure\CleanArchiSoitec.Infrastructure.csproj", "{212C6ECD-8065-4433-996A-03C3B0EF4CFB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchUnit", "ArchUnit\ArchUnit.csproj", "{A4C0A626-278F-449E-B2FF-E788E1CE04D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{212C6ECD-8065-4433-996A-03C3B0EF4CFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{212C6ECD-8065-4433-996A-03C3B0EF4CFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{212C6ECD-8065-4433-996A-03C3B0EF4CFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4C0A626-278F-449E-B2FF-E788E1CE04D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4C0A626-278F-449E-B2FF-E788E1CE04D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4C0A626-278F-449E-B2FF-E788E1CE04D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4C0A626-278F-449E-B2FF-E788E1CE04D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -20,7 +20,6 @@ namespace CleanArchiSoitec.Controllers
         [HttpGet(Name = "Schedule")]
         public CreditSimuResponse Get([FromQuery] CreditSimuRequest request)
         {
-
             var schedule = register.Execute(
                 new RegisterCreditSimulationParameters(request.Principal, request.AnnualRate, request.DurationInMonths, DateTime.Parse(request.UnlockDate))
             );

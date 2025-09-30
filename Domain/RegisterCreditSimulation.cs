@@ -8,17 +8,17 @@ namespace Domain
 {
     public class RegisterCreditSimulation : IRegisterCreditSimulation
     {
-        private readonly IScheduleWriter scheduleWriter;
+        private readonly IScheduleWriter _scheduleWriter;
 
         public RegisterCreditSimulation(IScheduleWriter scheduleWriter)
         {
-            this.scheduleWriter = scheduleWriter;
+            _scheduleWriter = scheduleWriter;
         }
 
         public Schedule Execute(RegisterCreditSimulationParameters @params)
         {
             var schedule = new Schedule(@params.Principal, @params.AnnualRate, @params.DurationInMonths, @params.UnlockDate);
-            scheduleWriter.ExportSchedule(schedule);
+            _scheduleWriter.ExportSchedule(schedule);
             return schedule;
         }
     }

@@ -122,6 +122,4 @@ public class ScheduleTest
         // Assert 
         Assert.Equal(installments.Count, installments.DistinctBy(p => p.DateInvest.Date).Count());
     }
-
-
 }

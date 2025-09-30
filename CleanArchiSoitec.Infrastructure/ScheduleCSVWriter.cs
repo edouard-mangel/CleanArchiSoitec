@@ -12,10 +12,7 @@ namespace CleanArchiSoitec.Infrastructure
 
         public void ExportSchedule(Schedule schedule)
         {
-
-
             var path = Path.Combine(Directory.GetCurrentDirectory(), $"{DateTime.Now.ToString("yyyyMMddhhmmssfff")}.csv");
-
 
             var sb = new StringBuilder();
 
@@ -29,6 +26,5 @@ namespace CleanArchiSoitec.Infrastructure
 
             File.WriteAllText(path, sb.ToString(), Encoding.UTF8);
         }
-
     }
 }

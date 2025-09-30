@@ -1,5 +1,4 @@
-﻿
-namespace Domain;
+﻿namespace Domain;
 
 public class Schedule
 {
@@ -19,8 +18,6 @@ public class Schedule
         MonthlyAmount = ComputeMonthlyAmount();
         Installments = ComputeSchedule();
     }
-
-    public Schedule(decimal principal, decimal annualRate, int months):this(principal,annualRate,months,DateTime.Now) { }
 
     private static decimal ComputePeriodicRate(decimal rate)
     {
