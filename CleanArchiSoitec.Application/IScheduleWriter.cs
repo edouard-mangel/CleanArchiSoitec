@@ -1,4 +1,6 @@
-﻿namespace Domain
+﻿using Domain;
+
+namespace CleanArchiSoitec.Application
 {
     public interface IScheduleWriter
     {

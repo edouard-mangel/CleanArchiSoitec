@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CleanArchiSoitec.Application\CleanArchiSoitec.Application.csproj" />
-    <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

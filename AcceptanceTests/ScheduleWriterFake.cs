@@ -1,4 +1,5 @@
-﻿using Domain;
+﻿using CleanArchiSoitec.Application;
+using Domain;
 
 namespace UnitTests
 {

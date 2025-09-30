@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchiSoitec.Infrastruc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchUnit", "ArchUnit\ArchUnit.csproj", "{A4C0A626-278F-449E-B2FF-E788E1CE04D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchiSoitec.Application", "CleanArchiSoitec.Application\CleanArchiSoitec.Application.csproj", "{86D961B5-56FD-4942-8D1C-BA1FF4B61E81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcceptanceTests", "AcceptanceTests\AcceptanceTests.csproj", "{65A3B56E-8D7C-4550-BB08-4E35CCC1C0C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{A4C0A626-278F-449E-B2FF-E788E1CE04D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4C0A626-278F-449E-B2FF-E788E1CE04D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4C0A626-278F-449E-B2FF-E788E1CE04D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86D961B5-56FD-4942-8D1C-BA1FF4B61E81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86D961B5-56FD-4942-8D1C-BA1FF4B61E81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86D961B5-56FD-4942-8D1C-BA1FF4B61E81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86D961B5-56FD-4942-8D1C-BA1FF4B61E81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65A3B56E-8D7C-4550-BB08-4E35CCC1C0C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65A3B56E-8D7C-4550-BB08-4E35CCC1C0C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65A3B56E-8D7C-4550-BB08-4E35CCC1C0C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65A3B56E-8D7C-4550-BB08-4E35CCC1C0C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

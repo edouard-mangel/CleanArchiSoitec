@@ -1,8 +1,8 @@
-﻿namespace Domain
+﻿namespace CleanArchiSoitec.Application
 {
-    public class RegisterCreditSimulationParameters
+    public class CreditSimulationParameters
     {
-        public RegisterCreditSimulationParameters(decimal principal, decimal annualRate, int durationInMonths, DateTime unlockDate)
+        public CreditSimulationParameters(decimal principal, decimal annualRate, int durationInMonths, DateTime unlockDate)
         {
             Principal = principal;
             AnnualRate = annualRate;

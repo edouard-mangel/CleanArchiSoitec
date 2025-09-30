@@ -1,4 +1,5 @@
-﻿using Domain;
+﻿using CleanArchiSoitec.Application;
+using Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace CleanArchiSoitec.Infrastructure
 
         public void ExportSchedule(Schedule schedule)
         {
-            var path = Path.Combine(Directory.GetCurrentDirectory(), $"{DateTime.Now.ToString("yyyyMMddhhmmssfff")}.json");
+            var path = Path.Combine(Directory.GetCurrentDirectory(), $"{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.json");
             string json = JsonSerializer.Serialize(schedule.Installments);
 
             File.WriteAllText(path, json, Encoding.UTF8);

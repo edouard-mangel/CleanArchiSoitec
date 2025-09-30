@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain
+namespace CleanArchiSoitec.Application
 {
     public class RegisterCreditSimulation : IRegisterCreditSimulation
     {
@@ -15,7 +16,7 @@ namespace Domain
             _scheduleWriter = scheduleWriter;
         }
 
-        public Schedule Execute(RegisterCreditSimulationParameters @params)
+        public Schedule Execute(CreditSimulationParameters @params)
         {
             var schedule = new Schedule(@params.Principal, @params.AnnualRate, @params.DurationInMonths, @params.UnlockDate);
             _scheduleWriter.ExportSchedule(schedule);

@@ -1,4 +1,5 @@
 ﻿
+using CleanArchiSoitec.Application;
 using CleanArchiSoitec.Infrastructure;
 using Domain;
 using Microsoft.AspNetCore.Builder;
@@ -26,6 +27,7 @@ namespace CleanArchiSoitec
 
             // Domain
             builder.Services.AddScoped<IRegisterCreditSimulation, RegisterCreditSimulation>();
+            builder.Services.AddScoped<IGenerateCreditSimulation, GenerateCreditSimulation>();
             // Génère un document OpenAPI "v1"
             builder.Services.AddOpenApiDocument(settings =>
             {
