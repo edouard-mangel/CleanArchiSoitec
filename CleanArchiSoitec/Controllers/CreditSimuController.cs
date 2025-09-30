@@ -14,7 +14,7 @@ namespace CleanArchiSoitec.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "CreditSimuController")]
+        [HttpGet(Name = "Schedule")]
         public object Get(CreditSimuRequest request)
         {
             Schedule schedule = new Schedule(request.Principal,request.AnnualRate,request.DurationInMonths, request.UnlockDate);
