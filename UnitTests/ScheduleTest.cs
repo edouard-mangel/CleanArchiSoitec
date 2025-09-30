@@ -1,11 +1,11 @@
 ﻿namespace UnitTests;
 
-public class CreditSimulatorTest
+public class ScheduleTest
 {
-    private CreditSimulator CreditSimulator { get; set; }
-    public CreditSimulatorTest()
+    private Schedule schedule { get; set; }
+    public ScheduleTest()
     {
-        CreditSimulator = new(10000, 5, 12);
+        schedule = new(10000, 5, 12, new DateTime());
     }
 
     [Theory]
@@ -15,10 +15,10 @@ public class CreditSimulatorTest
     public void MustComputeMonthlyAmount(decimal principal, decimal annualRate, int durationInMonths, decimal expectedMonthlyAmount)
     {
         // Arrange 
-        CreditSimulator = new CreditSimulator(principal, annualRate, durationInMonths);
+        schedule = new Schedule(principal, annualRate, durationInMonths, DateTime.Now);
 
         // Act
-        var monthlyAmount = CreditSimulator.ComputeMonthlyAmount();
+        var monthlyAmount = schedule.MonthlyAmount;
         
         // Assert
         Assert.Equal(expectedMonthlyAmount, monthlyAmount);
@@ -30,10 +30,10 @@ public class CreditSimulatorTest
     public void MustComputeFirstInstallment(decimal principal, decimal annualRate, int durationInMonths, decimal expectedMonthlyAmount, decimal expectedInterest, decimal expectedPrincipal)
     {
         // Arrange 
-        CreditSimulator = new CreditSimulator(principal, annualRate, durationInMonths);
+        schedule = new Schedule(principal, annualRate, durationInMonths, DateTime.Now);
 
         // Act
-        var firstInstallment = CreditSimulator.ComputeInstallment(1, principal, DateTime.Now);
+        var firstInstallment = schedule.Installments.First();
 
         // Assert
         Assert.Equal(expectedMonthlyAmount, firstInstallment.Total);
@@ -48,10 +48,10 @@ public class CreditSimulatorTest
     public void ComputeAllInstallments(decimal principal, decimal annualRate, int durationInMonths)
     {
         // Arrange 
-        CreditSimulator = new CreditSimulator(principal, annualRate, durationInMonths);
+        schedule = new Schedule(principal, annualRate, durationInMonths, DateTime.Now);
 
         // Act
-        var installments = CreditSimulator.ComputeSchedule(DateTime.Now);
+        var installments = schedule.Installments;
 
         // Assert
         Assert.Equal(durationInMonths, installments.Count);
@@ -63,10 +63,10 @@ public class CreditSimulatorTest
     public void AllIsRefunded(decimal principal, decimal annualRate, int durationInMonths)
     {
         // Arrange 
-        CreditSimulator = new CreditSimulator(principal, annualRate, durationInMonths);
+        schedule = new Schedule(principal, annualRate, durationInMonths, DateTime.Now);
 
         // Act
-        var installments = CreditSimulator.ComputeSchedule(DateTime.Now);
+        var installments = schedule.Installments;
 
         // Assert 
         decimal TotalRefunded = installments.Sum(i => i.Principal);
@@ -80,10 +80,10 @@ public class CreditSimulatorTest
     {
         // Arrange 
         DateTime fromDate = DateTime.Parse(dateBegin);
-        CreditSimulator = new CreditSimulator(principal, annualRate, durationInMonths);
+        schedule = new Schedule(principal, annualRate, durationInMonths, fromDate);
 
         // Act
-        var firstInstallment = CreditSimulator.ComputeInstallment(1, principal, fromDate);
+        var firstInstallment = schedule.ComputeInstallment(1, principal);
 
         // Assert
         Assert.Equal(fromDate, firstInstallment.DateInvest);
@@ -95,10 +95,10 @@ public class CreditSimulatorTest
     {
         // Arrange 
         DateTime fromDate = DateTime.Parse(dateBegin);
-        CreditSimulator = new CreditSimulator(principal, annualRate, durationInMonths);
+        schedule = new Schedule(principal, annualRate, durationInMonths, fromDate);
 
         // Act
-        var installments = CreditSimulator.ComputeSchedule(fromDate);
+        var installments = schedule.Installments;
 
         // Assert
         DateTime expectedDate = DateTime.Parse(expectedValue);
@@ -112,10 +112,10 @@ public class CreditSimulatorTest
     {
         DateTime fromDate = DateTime.Parse(dateBegin);
         // Arrange 
-        CreditSimulator = new CreditSimulator(principal, annualRate, durationInMonths);
+        schedule = new Schedule(principal, annualRate, durationInMonths, fromDate);
 
         // Act
-        var installments = CreditSimulator.ComputeSchedule(fromDate);
+        var installments = schedule.Installments;
 
         // Assert 
         Assert.Equal(installments.Count, installments.DistinctBy(p => p.DateInvest.Date).Count());
