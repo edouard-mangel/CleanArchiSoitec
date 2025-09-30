@@ -7,18 +7,13 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CleanArchiSoitec.Infrastructure
 {
-    public class ScheduleCSVWriter
+    public class ScheduleCSVWriter : IScheduleWriter
     {
-        private readonly Schedule schedule;
 
-        public ScheduleCSVWriter(Schedule schedule)
+        public void ExportSchedule(Schedule schedule)
         {
-            this.schedule = schedule;
 
-        }
 
-        public void ExportSchedule()
-        {
             var path = Path.Combine(Directory.GetCurrentDirectory(), $"{DateTime.Now.ToString("yyyyMMddhhmmssfff")}.csv");
 
 

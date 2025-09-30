@@ -8,10 +8,12 @@ namespace CleanArchiSoitec.Controllers
     [Route("[controller]")]
     public class CreditSimuController : ControllerBase
     {
+        private readonly IScheduleWriter scheduleWriter;
         private readonly ILogger<CreditSimuController> _logger;
 
-        public CreditSimuController(ILogger<CreditSimuController> logger)
+        public CreditSimuController(IScheduleWriter scheduleWriter, ILogger<CreditSimuController> logger)
         {
+            this.scheduleWriter = scheduleWriter;
             _logger = logger;
         }
 
@@ -20,16 +22,8 @@ namespace CleanArchiSoitec.Controllers
         {
             Schedule schedule = new Schedule(request.Principal,request.AnnualRate,request.DurationInMonths, DateTime.Parse(request.UnlockDate));
             var response = new CreditSimuResponse(schedule);
-            new ScheduleCSVWriter(schedule).ExportSchedule();
+            scheduleWriter.ExportSchedule(schedule);
             return response;
         }
-        /*
-        public CreditSimuResponse Post([FromQuery] CreditSimuRequest request)
-        {
-            Schedule schedule = new Schedule(request.Principal, request.AnnualRate, request.DurationInMonths, DateTime.Parse(request.UnlockDate));
-            var response = new CreditSimuResponse(schedule);
-
-            return response;
-        }*/
     }
 }

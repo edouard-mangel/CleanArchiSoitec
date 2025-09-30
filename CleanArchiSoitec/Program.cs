@@ -1,4 +1,5 @@
 ﻿
+using CleanArchiSoitec.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.PlatformAbstractions;
 using NSwag.AspNetCore;
@@ -16,6 +17,8 @@ namespace CleanArchiSoitec
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
+
+            builder.Services.AddScoped<IScheduleWriter, ScheduleJSONWriter>();
             // Génère un document OpenAPI "v1"
             builder.Services.AddOpenApiDocument(settings =>
             {
