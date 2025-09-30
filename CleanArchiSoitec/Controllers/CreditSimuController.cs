@@ -8,21 +8,24 @@ namespace CleanArchiSoitec.Controllers
     [Route("[controller]")]
     public class CreditSimuController : ControllerBase
     {
-        private readonly IScheduleWriter scheduleWriter;
+        private readonly IRegisterCreditSimulation register;
         private readonly ILogger<CreditSimuController> _logger;
 
-        public CreditSimuController(IScheduleWriter scheduleWriter, ILogger<CreditSimuController> logger)
+        public CreditSimuController(IRegisterCreditSimulation register, ILogger<CreditSimuController> logger)
         {
-            this.scheduleWriter = scheduleWriter;
+            this.register = register;
             _logger = logger;
         }
 
         [HttpGet(Name = "Schedule")]
         public CreditSimuResponse Get([FromQuery] CreditSimuRequest request)
         {
-            Schedule schedule = new Schedule(request.Principal,request.AnnualRate,request.DurationInMonths, DateTime.Parse(request.UnlockDate));
+
+            var schedule = register.Execute(
+                new RegisterCreditSimulationParameters(request.Principal, request.AnnualRate, request.DurationInMonths, DateTime.Parse(request.UnlockDate))
+            );
+
             var response = new CreditSimuResponse(schedule);
-            scheduleWriter.ExportSchedule(schedule);
             return response;
         }
     }

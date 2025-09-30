@@ -1,6 +1,4 @@
-﻿using Domain;
-
-namespace CleanArchiSoitec.Infrastructure
+﻿namespace Domain
 {
     public interface IScheduleWriter
     {
