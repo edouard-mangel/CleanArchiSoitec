@@ -4,7 +4,6 @@ using CleanArchiSoitec.Application;
 using CleanArchiSoitec.Infrastructure;
 using Domain;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.PlatformAbstractions;
 using NSwag.AspNetCore;
 
 namespace CleanArchiSoitec

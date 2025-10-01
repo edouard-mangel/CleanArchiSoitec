@@ -6,14 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 namespace CleanArchiSoitec.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class CreditSimuController : ControllerBase
+    [Route("api/[controller]")]
+    public class CreditSimulationController : ControllerBase
     {
         private readonly IRegisterCreditSimulation register;
         private readonly IGenerateCreditSimulation generate;
-        private readonly ILogger<CreditSimuController> _logger;
+        private readonly ILogger<CreditSimulationController> _logger;
 
-        public CreditSimuController(IRegisterCreditSimulation register, IGenerateCreditSimulation generate, ILogger<CreditSimuController> logger)
+        public CreditSimulationController(IRegisterCreditSimulation register, IGenerateCreditSimulation generate, ILogger<CreditSimulationController> logger)
         {
             this.register = register;
             this.generate = generate;
