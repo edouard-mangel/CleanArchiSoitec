@@ -1,4 +1,6 @@
 using CleanArchiSoitec.Application;
+using CleanArchiSoitec.Application.Commands;
+using CleanArchiSoitec.Application.Queries;
 using CleanArchiSoitec.Infrastructure;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
@@ -9,18 +11,17 @@ namespace CleanArchiSoitec.Controllers
     [Route("api/[controller]")]
     public class CreditSimulationController : ControllerBase
     {
-        private readonly IRegisterCreditSimulation register;
+ 
         private readonly IGenerateCreditSimulation generate;
         private readonly ILogger<CreditSimulationController> _logger;
 
         public CreditSimulationController(IRegisterCreditSimulation register, IGenerateCreditSimulation generate, ILogger<CreditSimulationController> logger)
         {
-            this.register = register;
             this.generate = generate;
             _logger = logger;
         }
 
-        [HttpGet(Name = "Schedule")]
+        [HttpGet("Schedule")]
         public CreditSimuResponse Get([FromQuery] CreditSimuRequest request)
         {
             var schedule = generate.Execute(
@@ -29,16 +30,6 @@ namespace CleanArchiSoitec.Controllers
 
             var response = new CreditSimuResponse(schedule);
             return response;
-        }
-
-        [HttpPost(Name = "Schedule")]
-        public IActionResult Post([FromBody] CreditSimuRequest request)
-        {
-            var schedule = register.Execute(
-                new CreditSimulationParameters(request.Principal, request.AnnualRate, request.DurationInMonths, DateTime.Parse(request.UnlockDate))
-            );
-
-            return Ok();
         }
     }
 }

@@ -7,13 +7,10 @@ using System.Threading.Tasks;
 
 namespace CleanArchiSoitec.Application
 {
-    public interface IScheduleRepository
+    public interface IRepository<T>
     {
-        public void Save(Schedule schedule);
+        public void Save(T schedule);
 
 
-        public IEnumerable<Schedule> GetAll();
-
-        public Schedule Get(int id);
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchiSoitec.Application
+namespace CleanArchiSoitec.Application.Queries
 {
     public class GenerateCreditSimulation : IGenerateCreditSimulation
     {

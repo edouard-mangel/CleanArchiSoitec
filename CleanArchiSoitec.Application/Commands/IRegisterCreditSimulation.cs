@@ -1,6 +1,6 @@
 ﻿using Domain;
 
-namespace CleanArchiSoitec.Application
+namespace CleanArchiSoitec.Application.Commands
 {
     public interface IRegisterCreditSimulation
     {

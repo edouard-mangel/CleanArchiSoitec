@@ -1,4 +1,6 @@
-﻿using CleanArchiSoitec.Application;
+﻿using AcceptanceTests;
+using CleanArchiSoitec.Application;
+using CleanArchiSoitec.Application.Commands;
 using Domain;
 using System;
 using System.Collections.Generic;
@@ -34,7 +36,7 @@ namespace UnitTests
             var schedule = sut.Execute(parameterset);
 
             // Assert 
-
+            
             var writtenSchedule = this.writer.Schedules.First();
             Assert.Equal(schedule, writtenSchedule);
         }

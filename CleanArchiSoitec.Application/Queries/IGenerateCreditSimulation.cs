@@ -1,6 +1,6 @@
 ﻿using Domain;
 
-namespace CleanArchiSoitec.Application
+namespace CleanArchiSoitec.Application.Queries
 {
     public interface IGenerateCreditSimulation
     {

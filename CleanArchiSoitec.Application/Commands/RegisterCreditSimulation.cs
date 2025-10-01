@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchiSoitec.Application
+namespace CleanArchiSoitec.Application.Commands
 {
     public class RegisterCreditSimulation : IRegisterCreditSimulation
     {
