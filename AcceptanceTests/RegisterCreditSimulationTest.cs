@@ -128,7 +128,7 @@ namespace UnitTests
 
             // Act
             var schedule = sut.Execute(parameterset);
-            var firstInstallment = schedule.ComputeInstallment(1, principal);
+            var firstInstallment = schedule.Installments.First();
 
             // Assert
             Assert.Equal(fromDate, firstInstallment.DateInvest);

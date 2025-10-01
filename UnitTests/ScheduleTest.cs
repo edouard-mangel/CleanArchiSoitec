@@ -76,21 +76,6 @@ public class ScheduleTest
     }
     
     [Theory]
-    [InlineData(10000, 5, 12, "2025-12-13")]
-    [InlineData(20000, 3.5, 24, "2025-01-14") ]
-    public void MustFirstInvestmentDateIsBeginDate(decimal principal, decimal annualRate, int durationInMonths, string dateBegin)
-    {
-        // Arrange 
-        DateTime fromDate = DateTime.Parse(dateBegin);
-        schedule = new Schedule(principal, annualRate, durationInMonths, fromDate);
-
-        // Act
-        var firstInstallment = schedule.ComputeInstallment(1, principal);
-
-        // Assert
-        Assert.Equal(fromDate, firstInstallment.DateInvest);
-    }
-    [Theory]
     [InlineData(10000, 5, 12, "2025-12-13", "2026-11-13")]
     [InlineData(20000, 3.5, 24, "2025-01-14", "2026-12-14")]
     public void MustEndInvestmentDateAre(decimal principal, decimal annualRate, int durationInMonths, string dateBegin, string expectedValue)

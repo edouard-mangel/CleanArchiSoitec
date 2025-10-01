@@ -18,4 +18,13 @@ public class InstallmentSnapshot
         Number = installment.Number;
         DateInvest = installment.DateInvest;
     }
+
+    public InstallmentSnapshot(int number, decimal total, decimal interest, decimal principal,  DateTime dateInvest)
+    {
+        Total = total;
+        Interest = interest;
+        Principal = principal;
+        Number = number;
+        DateInvest = dateInvest;
+    }
 }

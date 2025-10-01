@@ -45,7 +45,7 @@ public class Schedule
         return Math.Round(numerator/denominator,2);
     }
 
-    public Installment ComputeInstallment(int number, decimal remainingAmount)
+    private Installment ComputeInstallment(int number, decimal remainingAmount)
     {
         decimal total = MonthlyAmount;
         decimal interest = (decimal)Math.Round( Schedule.ComputePeriodicRate(AnnualRate) * remainingAmount, 2);
