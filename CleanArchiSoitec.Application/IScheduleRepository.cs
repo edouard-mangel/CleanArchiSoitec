@@ -14,6 +14,6 @@ namespace CleanArchiSoitec.Application
 
         public IEnumerable<Schedule> GetAll();
 
-
+        public Schedule Get(int id);
     }
 }

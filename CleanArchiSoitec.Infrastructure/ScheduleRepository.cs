@@ -15,6 +15,11 @@ namespace CleanArchiSoitec.Infrastructure
 
         }
 
+        public Schedule Get(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Schedule> GetAll()
         {
             throw new NotImplementedException();
@@ -22,7 +27,9 @@ namespace CleanArchiSoitec.Infrastructure
 
         public void Save(Schedule schedule)
         {
-            throw new NotImplementedException();
+            // Serialization from snapshot
+            var snapshot = schedule.GetSnapShot();
+            
         }
     }
 }

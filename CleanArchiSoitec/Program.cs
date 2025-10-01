@@ -1,4 +1,5 @@
 ﻿
+using Application;
 using CleanArchiSoitec.Application;
 using CleanArchiSoitec.Infrastructure;
 using Domain;
@@ -23,11 +24,12 @@ namespace CleanArchiSoitec
 
             // Infra
             builder.Services.AddScoped<IScheduleWriter, ScheduleJSONWriter>();
-
+            builder.Services.AddScoped<IDateTimeProvider, DateTimeProvider>();
 
             // Domain
             builder.Services.AddScoped<IRegisterCreditSimulation, RegisterCreditSimulation>();
             builder.Services.AddScoped<IGenerateCreditSimulation, GenerateCreditSimulation>();
+            //builder.Services.AddScoped<, SkipNew>
             // Génère un document OpenAPI "v1"
             builder.Services.AddOpenApiDocument(settings =>
             {

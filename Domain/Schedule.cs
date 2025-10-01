@@ -6,15 +6,16 @@ public class Schedule
     public decimal Principal { get; }
     public decimal AnnualRate { get; }
     public decimal MonthlyAmount { get; }
-    public IReadOnlyCollection<Installment> Installments { get; }
-    public int DurationInMonths { get; }
+    public IList<Installment> Installments { get; }
+    public int DurationInMonths => Installments.Count();
+    private readonly int _InitialDuration;
     public DateTime UnlockDate { get; }
 
     public Schedule(decimal principal, decimal annualRate, int months, DateTime fromDate)
     {
         Principal = principal;
         AnnualRate = annualRate;
-        DurationInMonths = months;
+        _InitialDuration = months;
         UnlockDate = fromDate;
         MonthlyAmount = ComputeMonthlyAmount();
         Installments = ComputeSchedule();
@@ -25,7 +26,6 @@ public class Schedule
         this.Id = snapshot.Id;
         this.Principal = snapshot.Principal;
         this.AnnualRate = snapshot.AnnualRate;
-        this.DurationInMonths = snapshot.DurationInMonths;
         this.UnlockDate = snapshot.UnlockDate;
         this.MonthlyAmount = snapshot.MonthlyAmount;
         this.Installments = snapshot.Installments.Select(i => new Installment(i)).ToList();
@@ -38,9 +38,9 @@ public class Schedule
 
     private decimal ComputeMonthlyAmount()
     {
-        decimal numerator = Principal * ComputePeriodicRate(AnnualRate) * (decimal)Math.Pow((double)(1 + ComputePeriodicRate(AnnualRate)), DurationInMonths);
+        decimal numerator = Principal * ComputePeriodicRate(AnnualRate) * (decimal)Math.Pow((double)(1 + ComputePeriodicRate(AnnualRate)), _InitialDuration);
         
-        decimal denominator = (decimal)(Math.Pow((double)(1 + ComputePeriodicRate(AnnualRate)), DurationInMonths) - 1);
+        decimal denominator = (decimal)(Math.Pow((double)(1 + ComputePeriodicRate(AnnualRate)), _InitialDuration) - 1);
         
         return Math.Round(numerator/denominator,2);
     }
@@ -61,11 +61,11 @@ public class Schedule
         };
     }
 
-    public IReadOnlyCollection<Installment> ComputeSchedule()
+    public IList<Installment> ComputeSchedule()
     {
         var installments = new List<Installment>();
         decimal remainingAmount = Principal;
-        for (int i = 1; i < DurationInMonths; i++)
+        for (int i = 1; i < _InitialDuration; i++)
         {
             Installment currentInstallment = ComputeInstallment(i, remainingAmount);
             remainingAmount -= currentInstallment.Principal;
@@ -82,11 +82,50 @@ public class Schedule
     {
         return new Installment()
         {
-            Number = DurationInMonths,
+            Number = _InitialDuration,
             Principal = remainingAmount,
             Interest = (decimal)Math.Round(Schedule.ComputePeriodicRate(AnnualRate) * remainingAmount, 2),
             Total = remainingAmount + (decimal)Math.Round(Schedule.ComputePeriodicRate(AnnualRate) * remainingAmount, 2),
-            DateInvest = UnlockDate.AddMonths(DurationInMonths-1)
+            DateInvest = UnlockDate.AddMonths(_InitialDuration - 1)
         };
+    }
+
+    private Installment GetNextInstallmentFromDate(DateTime dateTime)
+    {
+        return this.Installments.OrderBy(p => p.Number).First(p => p.DateInvest >= dateTime);
+    }
+
+    public void SkipInstallmentFromDate(DateTime dateTime)
+    {
+        var installmentToSkip = this.GetNextInstallmentFromDate(dateTime);
+
+        
+        var installmentSkipped =  new Installment()
+        {
+            Number = installmentToSkip.Number,
+            Principal = 0,
+            DateInvest = installmentToSkip.DateInvest,
+            Interest = installmentToSkip.Interest,
+            Total = installmentToSkip.Interest
+        };
+        /*
+        var installmentLast = Installments.Last();
+
+        var installmentToAdd = new Installment()
+        {
+            Number = installmentToSkip.Number,
+            Principal = 0,
+            DateInvest = installmentToSkip.DateInvest,
+            Interest = installmentToSkip.Interest,
+            Total = installmentToSkip.Interest
+        };
+
+        Installments.Remove(installmentToSkip);*/
+        Installments.Add(installmentSkipped);
+    }
+
+    public ScheduleSnapshot GetSnapShot()
+    {
+        return new ScheduleSnapshot(Principal, AnnualRate, UnlockDate, MonthlyAmount, Installments.Select(p => new InstallmentSnapshot(p)).ToList(), Id);
     }
 }
