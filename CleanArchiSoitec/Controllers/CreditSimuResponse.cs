@@ -6,10 +6,21 @@ namespace CleanArchiSoitec.Controllers
 {
     public class CreditSimuResponse
     {
-        public Schedule schedule {  get; set; }
+        public CreditSimuResponse()
+        {
+                
+        }
+        public decimal Principal { get; set; }
+        public decimal AnnualRate { get; set; }
+        public decimal MonthlyAmount { get; set; }
+        public int DurationInMonths { get; set; }
+
         public CreditSimuResponse(Schedule schedule)
         {
-            this.schedule = schedule;
+            Principal = schedule.Principal;
+            AnnualRate = schedule.AnnualRate;
+            MonthlyAmount = schedule.MonthlyAmount;
+            DurationInMonths = schedule.DurationInMonths;
         }
     }
 }

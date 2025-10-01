@@ -160,6 +160,9 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line 7
  await testRunner.ThenAsync("the monthly payment should be 85.61", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
+#line 8
+ await testRunner.AndAsync("the number of installments is 12", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
             }
             await this.ScenarioCleanupAsync();
         }

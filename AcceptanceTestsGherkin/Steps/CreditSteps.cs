@@ -1,6 +1,5 @@
 ﻿using CleanArchiSoitec.Controllers;
 
-using FluentAssertions;
 using Reqnroll;
 
 namespace AcceptanceTests.Steps;
@@ -24,12 +23,16 @@ public class CreditSteps(ScenarioContext context) : BaseSteps(context)
     }
 
 
-    [Then("The monthly payment is (.+?)")]
-    public void ThenTheMonthlyPaymentIs(decimal monthlyAmount)
+    [Then("the monthly payment should be {float}")]
+    public void ThenTheMonthlyPaymentShouldBe(Decimal monthlyAmount)
     {
-        this.Context.Get<CreditSimuResponse>("simulationResult").schedule.MonthlyAmount.Should().Be(monthlyAmount);
+        Assert.Equal(monthlyAmount, this.Context.Get<CreditSimuResponse>("simulationResult").MonthlyAmount);
     }
 
-
+    [Then("the number of installments is {int}")]
+    public void ThenTheNumberOfInstallmentsIs(int p0)
+    {
+        Assert.Equal(p0, this.Context.Get<CreditSimuResponse>("simulationResult").DurationInMonths);
+    }
 
 }

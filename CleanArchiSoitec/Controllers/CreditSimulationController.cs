@@ -24,8 +24,11 @@ namespace CleanArchiSoitec.Controllers
         [HttpGet("Schedule")]
         public CreditSimuResponse Get([FromQuery] CreditSimuRequest request)
         {
+            DateTime unlockDate = DateTime.Today;
+            DateTime.TryParse(request.UnlockDate, out unlockDate);
+
             var schedule = generate.Execute(
-                new CreditSimulationParameters(request.Principal, request.AnnualRate, request.DurationInMonths, DateTime.Parse(request.UnlockDate))
+                new CreditSimulationParameters(request.Principal, request.AnnualRate, request.DurationInMonths, unlockDate)
             );
 
             var response = new CreditSimuResponse(schedule);

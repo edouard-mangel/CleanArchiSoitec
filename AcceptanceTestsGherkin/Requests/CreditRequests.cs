@@ -14,7 +14,7 @@ namespace AcceptanceTests.Requests
 
         public Task<CreditSimuResponse> GetSimulation(CreditSimuRequest request)
         {
-            return client.Get<CreditSimuResponse>($"api/CreditSimulation/");
+            return client.Get<CreditSimuResponse>($"api/CreditSimulation/Schedule?Principal={request.Principal}&DurationInMonths={request.DurationInMonths}&AnnualRate={request.AnnualRate}");
         }
 
     }

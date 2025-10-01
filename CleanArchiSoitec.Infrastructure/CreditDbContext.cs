@@ -2,7 +2,9 @@
 
 namespace Infrastructure;
 
-public class CreditDbContext : DbContext
+public class CreditDbContext(DbContextOptions<CreditDbContext> options) : DbContext(options)
 {
+    public DbSet<ScheduleEntity> Schedules{ get; set; }
+    public DbSet<InstallmentEntity> Installments { get; set; }
 
 }
