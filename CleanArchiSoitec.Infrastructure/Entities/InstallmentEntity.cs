@@ -1,6 +1,4 @@
-﻿using Domain;
-
-namespace Infrastructure;
+﻿namespace CleanArchiSoitec.Infrastructure.Entities;
 
 public class InstallmentEntity
 {

@@ -13,7 +13,8 @@ public class TestServer : IDisposable
 
     public TestServer(ScenarioContext context)
     {
-        this.server = new WebApplicationFactory<Program>();
+        this.server = new WebApplicationFactory<Program>()
+            .WithWebHostBuilder(b => b.ConfigureTestServices(config => config.SubstituteServices()));
 
         this.Client = new(this.server.CreateClient(), context, this.server.Services);
     }

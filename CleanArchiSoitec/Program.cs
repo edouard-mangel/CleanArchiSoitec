@@ -3,6 +3,7 @@ using CleanArchiSoitec.Application;
 using CleanArchiSoitec.Application.Commands;
 using CleanArchiSoitec.Application.Queries;
 using CleanArchiSoitec.Infrastructure.Repositories;
+using CleanArchiSoitec.Infrastructure;
 using Domain;
 using Microsoft.AspNetCore.Builder;
 using NSwag.AspNetCore;
@@ -22,6 +23,8 @@ namespace CleanArchiSoitec
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
 
+            // Add Database
+            builder.Services.AddDatabase(builder.Configuration);
 
             // Infra
             builder.Services.AddScoped<IScheduleWriter, ScheduleJSONWriter>();

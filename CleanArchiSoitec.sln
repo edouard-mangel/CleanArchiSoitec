@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedKernel", "SharedKerne
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcceptanceTestsGherkin", "AcceptanceTestsGherkin\AcceptanceTestsGherkin.csproj", "{D4C028C5-B332-4754-DD8C-40BB135BEABE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +74,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4C2A3852-5834-42CB-AC91-00D4BB8FBE12} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{65A3B56E-8D7C-4550-BB08-4E35CCC1C0C9} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{FFE4365F-76CF-4055-8922-0400608A66F3} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{D4C028C5-B332-4754-DD8C-40BB135BEABE} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E0B85A1F-3157-4DEE-80F9-06C282868FD8}

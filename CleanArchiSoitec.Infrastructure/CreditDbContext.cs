@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CleanArchiSoitec.Infrastructure.Entities;
+
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure;
 
