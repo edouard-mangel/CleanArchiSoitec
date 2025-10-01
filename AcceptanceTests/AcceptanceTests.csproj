@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CleanArchiSoitec.Application\CleanArchiSoitec.Application.csproj" />
+    <ProjectReference Include="..\TestDataGeneration\TestDataGeneration.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -2,6 +2,7 @@
 
 public class Schedule
 {
+    public int? Id { get; set; }
     public decimal Principal { get; }
     public decimal AnnualRate { get; }
     public decimal MonthlyAmount { get; }
@@ -17,6 +18,17 @@ public class Schedule
         UnlockDate = fromDate;
         MonthlyAmount = ComputeMonthlyAmount();
         Installments = ComputeSchedule();
+    }
+
+    public Schedule(ScheduleSnapshot snapshot)
+    {
+        this.Id = snapshot.Id;
+        this.Principal = snapshot.Principal;
+        this.AnnualRate = snapshot.AnnualRate;
+        this.DurationInMonths = snapshot.DurationInMonths;
+        this.UnlockDate = snapshot.UnlockDate;
+        this.MonthlyAmount = snapshot.MonthlyAmount;
+        this.Installments = snapshot.Installments.Select(i => new Installment(i)).ToList();
     }
 
     private static decimal ComputePeriodicRate(decimal rate)

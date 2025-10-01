@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchiSoitec.Applicatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcceptanceTests", "AcceptanceTests\AcceptanceTests.csproj", "{65A3B56E-8D7C-4550-BB08-4E35CCC1C0C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDataGeneration", "TestDataGeneration\TestDataGeneration.csproj", "{FFE4365F-76CF-4055-8922-0400608A66F3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{65A3B56E-8D7C-4550-BB08-4E35CCC1C0C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65A3B56E-8D7C-4550-BB08-4E35CCC1C0C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65A3B56E-8D7C-4550-BB08-4E35CCC1C0C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFE4365F-76CF-4055-8922-0400608A66F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFE4365F-76CF-4055-8922-0400608A66F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFE4365F-76CF-4055-8922-0400608A66F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFE4365F-76CF-4055-8922-0400608A66F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
