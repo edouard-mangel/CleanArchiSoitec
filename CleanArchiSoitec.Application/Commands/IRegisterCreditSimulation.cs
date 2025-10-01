@@ -4,6 +4,6 @@ namespace CleanArchiSoitec.Application.Commands
 {
     public interface IRegisterCreditSimulation
     {
-        Schedule Execute(CreditSimulationParameters registerCreditSimulationParameters);
+        Task<Schedule> Execute(CreditSimulationParameters registerCreditSimulationParameters);
     }
 }

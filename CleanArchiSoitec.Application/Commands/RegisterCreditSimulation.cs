@@ -1,4 +1,5 @@
 ﻿using Domain;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +19,13 @@ namespace CleanArchiSoitec.Application.Commands
             this.repository = repository;
         }
 
-        public Schedule Execute(CreditSimulationParameters @params)
+        public async Task<Schedule> Execute(CreditSimulationParameters @params)
         {
             var schedule = new Schedule(@params.Principal, @params.AnnualRate, @params.DurationInMonths, @params.UnlockDate);
             _scheduleWriter.ExportSchedule(schedule);
-            repository.Save(schedule);
+            int newId = await repository.Save(schedule);
+            schedule.Id = newId;
+
             return schedule;
         }
     }

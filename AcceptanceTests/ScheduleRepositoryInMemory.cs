@@ -10,10 +10,10 @@ namespace AcceptanceTests
         {
         }
 
-        public void Save(Schedule schedule)
+        public Task<int> Save(Schedule schedule)
         {
             this.Schedules.Add(new Schedule(schedule.GetSnapShot()));
+            return Task.FromResult(1);
         }
-
     }
 }

@@ -27,7 +27,7 @@ namespace UnitTests
         [Theory]
         [InlineData(10000, 5, 12, "2025-12-13")]
         [InlineData(20000, 3.5, 24, "2025-01-31")]
-        public void AllInvestsDateAreUnique(decimal principal, decimal annualRate, int durationInMonths, string dateBegin)
+        public async void AllInvestsDateAreUnique(decimal principal, decimal annualRate, int durationInMonths, string dateBegin)
         {
             // Arrange 
             DateTime fromDate = DateTime.Parse(dateBegin);
@@ -35,7 +35,7 @@ namespace UnitTests
             var parameterset = new CreditSimulationParameters(principal, annualRate, durationInMonths, fromDate);
 
             // Act
-            var schedule = sut.Execute(parameterset);
+            var schedule = await sut.Execute(parameterset);
 
             // Assert 
             
@@ -47,7 +47,7 @@ namespace UnitTests
         [InlineData(10000, 5, 12, 856.07)]
         [InlineData(20000, 2, 24, 850.81)]
         [InlineData(30000, 3, 120, 289.68)]
-        public void MustComputeMonthlyAmount(decimal principal, decimal annualRate, int durationInMonths, decimal expectedMonthlyAmount)
+        public async void MustComputeMonthlyAmount(decimal principal, decimal annualRate, int durationInMonths, decimal expectedMonthlyAmount)
         {
             // Arrange 
             DateTime fromDate = DateTime.Now;
@@ -55,7 +55,7 @@ namespace UnitTests
             var parameterset = new CreditSimulationParameters(principal, annualRate, durationInMonths, fromDate);
 
             // Act
-            var schedule = sut.Execute(parameterset);
+            var schedule = await sut.Execute(parameterset);
             var monthlyAmount = schedule.MonthlyAmount;
 
             // Assert
@@ -65,7 +65,7 @@ namespace UnitTests
         [Theory]
         [InlineData(10000, 5, 12, 856.07, 41.67, 814.40)]
         [InlineData(30000, 3, 120, 289.68, 75, 214.68)]
-        public void MustComputeFirstInstallment(decimal principal, decimal annualRate, int durationInMonths, decimal expectedMonthlyAmount, decimal expectedInterest, decimal expectedPrincipal)
+        public async void MustComputeFirstInstallment(decimal principal, decimal annualRate, int durationInMonths, decimal expectedMonthlyAmount, decimal expectedInterest, decimal expectedPrincipal)
         {
             // Arrange 
             DateTime fromDate = DateTime.Now;
@@ -73,7 +73,7 @@ namespace UnitTests
             var parameterset = new CreditSimulationParameters(principal, annualRate, durationInMonths, fromDate);
 
             // Act
-            var schedule = sut.Execute(parameterset);
+            var schedule = await sut.Execute(parameterset);
             var firstInstallment = schedule.Installments.First();
 
             // Assert
@@ -86,7 +86,7 @@ namespace UnitTests
         [Theory]
         [InlineData(10000, 5, 12)]
         [InlineData(20000, 3.5, 24)]
-        public void ComputeAllInstallments(decimal principal, decimal annualRate, int durationInMonths)
+        public async void ComputeAllInstallments(decimal principal, decimal annualRate, int durationInMonths)
         {
             // Arrange 
             DateTime fromDate = DateTime.Now;
@@ -94,7 +94,7 @@ namespace UnitTests
             var parameterset = new CreditSimulationParameters(principal, annualRate, durationInMonths, fromDate);
 
             // Act
-            var schedule = sut.Execute(parameterset);
+            var schedule = await sut.Execute(parameterset);
             var installments = schedule.Installments;
 
             // Assert
@@ -104,7 +104,7 @@ namespace UnitTests
         [Theory]
         [InlineData(10000, 5, 12)]
         [InlineData(20000, 3.5, 24)]
-        public void AllIsRefunded(decimal principal, decimal annualRate, int durationInMonths)
+        public async void AllIsRefunded(decimal principal, decimal annualRate, int durationInMonths)
         {
             // Arrange 
             DateTime fromDate = DateTime.Now;
@@ -112,7 +112,7 @@ namespace UnitTests
             var parameterset = new CreditSimulationParameters(principal, annualRate, durationInMonths, fromDate);
 
             // Act
-            var schedule = sut.Execute(parameterset);
+            var schedule = await sut.Execute(parameterset);
             var installments = schedule.Installments;
 
             // Assert 
@@ -123,7 +123,7 @@ namespace UnitTests
         [Theory]
         [InlineData(10000, 5, 12, "2025-12-13")]
         [InlineData(20000, 3.5, 24, "2025-01-14")]
-        public void MustFirstInvestmentDateIsBeginDate(decimal principal, decimal annualRate, int durationInMonths, string dateBegin)
+        public async void MustFirstInvestmentDateIsBeginDate(decimal principal, decimal annualRate, int durationInMonths, string dateBegin)
         {
             // Arrange 
             DateTime fromDate = DateTime.Now;
@@ -131,7 +131,7 @@ namespace UnitTests
             var parameterset = new CreditSimulationParameters(principal, annualRate, durationInMonths, fromDate);
 
             // Act
-            var schedule = sut.Execute(parameterset);
+            var schedule = await sut.Execute(parameterset);
             var firstInstallment = schedule.Installments.First();
 
             // Assert
@@ -140,14 +140,14 @@ namespace UnitTests
         [Theory]
         [InlineData(10000, 5, 12, "2025-12-13", "2026-11-13")]
         [InlineData(20000, 3.5, 24, "2025-01-14", "2026-12-14")]
-        public void MustEndInvestmentDateAre(decimal principal, decimal annualRate, int durationInMonths, string dateBegin, string expectedValue)
+        public async void MustEndInvestmentDateAre(decimal principal, decimal annualRate, int durationInMonths, string dateBegin, string expectedValue)
         {// Arrange 
             DateTime fromDate = DateTime.Parse(dateBegin);
 
             var parameterset = new CreditSimulationParameters(principal, annualRate, durationInMonths, fromDate);
 
             // Act
-            var schedule = sut.Execute(parameterset);
+            var schedule = await sut.Execute(parameterset);
             var installments = schedule.Installments;
 
             // Assert

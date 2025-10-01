@@ -23,18 +23,25 @@ namespace CleanArchiSoitec.Infrastructure.Repositories
         }
 
 
-        public async Task Save(Schedule schedule)
+        public async Task<int> Save(Schedule schedule)
         {
             // Serialization from snapshot
             var snapshot = schedule.GetSnapShot();
-            await dbContext.Schedules.AddAsync(new ScheduleEntity()
+            ScheduleEntity entity = new()
             {
-                Id = snapshot.Id.Value,
                 Principal = snapshot.Principal,
                 AnnualRate = snapshot.AnnualRate,
                 MonthlyAmount = snapshot.MonthlyAmount,
                 UnlockDate = snapshot.UnlockDate
-            });
+            };
+
+            if(!(schedule.Id is null))
+            {
+                entity.Id = schedule.Id.Value;
+            }
+            
+
+            await dbContext.Schedules.AddAsync(entity);
             foreach (var installment in schedule.Installments)
             {
                 await dbContext.Installments.AddAsync(new InstallmentEntity()
@@ -48,6 +55,7 @@ namespace CleanArchiSoitec.Infrastructure.Repositories
                 });
             }
             await dbContext.SaveChangesAsync();
+            return entity.Id;
         }
     }
 }
