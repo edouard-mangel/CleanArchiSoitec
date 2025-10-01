@@ -126,6 +126,6 @@ public class Schedule
 
     public ScheduleSnapshot GetSnapShot()
     {
-        return new ScheduleSnapshot(Principal, AnnualRate, UnlockDate, MonthlyAmount, Installments.Select(p => new InstallmentSnapshot(p)).ToList(), Id);
+        return new ScheduleSnapshot(Principal, AnnualRate, UnlockDate, MonthlyAmount, Installments.Select(p => new InstallmentSnapshot(p, Id)).ToList(), Id);
     }
 }

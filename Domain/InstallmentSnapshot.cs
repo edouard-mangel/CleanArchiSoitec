@@ -9,14 +9,16 @@ public class InstallmentSnapshot
     public decimal Principal { get; set; }
     public int Number { get; set; }
     public DateTime DateInvest { get; set; }
+    public int? ScheduleId { get; set; }
 
-    public InstallmentSnapshot(Installment installment)
+    public InstallmentSnapshot(Installment installment, int? scheduleId)
     {
         Total = installment.Total;
         Interest = installment.Interest;
         Principal = installment.Principal;
         Number = installment.Number;
         DateInvest = installment.DateInvest;
+        ScheduleId = scheduleId;
     }
 
     public InstallmentSnapshot(int number, decimal total, decimal interest, decimal principal,  DateTime dateInvest)

@@ -7,14 +7,14 @@ namespace AcceptanceTests.Steps;
 [Binding]
 public class CreditSteps(ScenarioContext context) : BaseSteps(context)
 {
-    [When("I simulate a credit with amount {int}, duration {int} months and interest rate {int}%")]
-    public async Task WhenISimulateACreditWithAmountDurationMonthsAndInterestRate(int p0, int p1, int p2)
+    [When("I simulate a credit with amount {int}, duration {int} months and interest rate {float}%")]
+    public async Task WhenISimulateACreditWithAmountDurationMonthsAndInterestRate(int amount, int duration, decimal ratePercent)
     {
         var request = new CreditSimuRequest
         {
-            Principal = p0,
-            DurationInMonths = p1,
-            AnnualRate = p2,
+            Principal = amount,
+            DurationInMonths = duration,
+            AnnualRate = ratePercent,
             UnlockDate = "2025/01/01"
         };
 
