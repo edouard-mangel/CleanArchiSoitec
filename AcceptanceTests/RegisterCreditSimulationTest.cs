@@ -14,12 +14,14 @@ namespace UnitTests
     public class RegisterCreditSimulationTest
     {
         private readonly ScheduleWriterFake writer;
+        private readonly ScheduleRepositoryInMemory repositoryInMemory;
         private RegisterCreditSimulation sut;
 
         public RegisterCreditSimulationTest()
         {
             this.writer = new ScheduleWriterFake();
-            sut = new RegisterCreditSimulation(writer);
+            this.repositoryInMemory = new ScheduleRepositoryInMemory();
+            sut = new RegisterCreditSimulation(writer, repositoryInMemory);
         }
 
         [Theory]

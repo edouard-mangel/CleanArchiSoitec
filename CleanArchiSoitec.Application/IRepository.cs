@@ -9,7 +9,7 @@ namespace CleanArchiSoitec.Application
 {
     public interface IRepository<T>
     {
-        public void Save(T schedule);
+        public Task Save(T schedule);
 
 
     }
