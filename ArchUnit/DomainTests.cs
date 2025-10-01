@@ -1,9 +1,7 @@
 ﻿using ArchUnitNET.Domain;
 using ArchUnitNET.Fluent;
 using ArchUnitNET.Loader;
-
-using CleanArchiSoitec.Infrastructure;
-
+using CleanArchiSoitec.Infrastructure.Repositories;
 using Domain;
 
 namespace ArchUnit;

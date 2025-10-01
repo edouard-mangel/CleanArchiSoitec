@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace CleanArchiSoitec.Infrastructure
+namespace CleanArchiSoitec.Infrastructure.Repositories
 {
     public class ScheduleJSONWriter : IScheduleWriter
     {

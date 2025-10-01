@@ -1,11 +1,12 @@
 ﻿
-using Application;
 using CleanArchiSoitec.Application;
-using CleanArchiSoitec.Infrastructure;
+using CleanArchiSoitec.Application.Commands;
+using CleanArchiSoitec.Application.Queries;
+using CleanArchiSoitec.Infrastructure.Repositories;
 using Domain;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.PlatformAbstractions;
 using NSwag.AspNetCore;
+using SharedKernel;
 
 namespace CleanArchiSoitec
 {
@@ -24,12 +25,14 @@ namespace CleanArchiSoitec
 
             // Infra
             builder.Services.AddScoped<IScheduleWriter, ScheduleJSONWriter>();
+            builder.Services.AddScoped<IRepository<Schedule>, ScheduleDbRepository>();
+            builder.Services.AddScoped<IFinder<Schedule>, ScheduleDbFinder>();
             builder.Services.AddScoped<IDateTimeProvider, DateTimeProvider>();
 
             // Domain
             builder.Services.AddScoped<IRegisterCreditSimulation, RegisterCreditSimulation>();
             builder.Services.AddScoped<IGenerateCreditSimulation, GenerateCreditSimulation>();
-            //builder.Services.AddScoped<, SkipNew>
+            builder.Services.AddScoped<ISkipNextInstallmentCredit, SkipNextInstallmentCredit>();
             // Génère un document OpenAPI "v1"
             builder.Services.AddOpenApiDocument(settings =>
             {
@@ -39,7 +42,7 @@ namespace CleanArchiSoitec
 
             var app = builder.Build();
    
-              app.MapOpenApi();
+            app.MapOpenApi();
 
             // 1) Votre sous-chemin d’hébergement
             app.UsePathBase("/CleanArchiSoitec");
